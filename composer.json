@@ -1,7 +1,7 @@
 {
     "name": "sebastiaanluca/laravel-validator",
     "type": "library",
-    "description": "derp",
+    "description": "An extension to the Laravel form request class to properly handle user input by using your validation rules as source of truth.",
     "keywords": [
         "Laravel",
         "validator",
