@@ -19,7 +19,7 @@ $ composer require sebastiaanluca/laravel-validator
 
 ## Usage
 
-TODO
+Simply extend the validator in your form request.
 
 ## Change log
 
