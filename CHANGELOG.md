@@ -4,19 +4,12 @@ All Notable changes to `laravel-validator` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## NEXT - YYYY-MM-DD
+## Next
 
 ### Added
-- Nothing
 
-### Deprecated
-- Nothing
-
-### Fixed
-- Nothing
+- Added support for multi-dimensional wildcard (*) array rules
 
 ### Removed
-- Nothing
 
-### Security
-- Nothing
+- Removed the obsolete service provider
