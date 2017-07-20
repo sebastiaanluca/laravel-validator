@@ -34,7 +34,7 @@ abstract class Validator extends FormRequest
      */
     public function getValidInput($clean = false)
     {
-        $input = array_dot($this->input());
+        $input = array_dot($this->all());
         $rules = array_keys($this->rules());
 
         $keys = collect($rules)->map(function (string $rule) use ($input) {
