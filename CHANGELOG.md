@@ -4,7 +4,11 @@ All Notable changes to `laravel-validator` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## Next
+## Unreleased
+
+…
+
+## 0.2.0 (2017-08-02)
 
 ### Added
 
@@ -13,3 +17,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Removed
 
 - Removed the obsolete service provider
+
+### Fixed
+
+- Removed the need to have `sebastiaanluca/laravel-helpers` installed (used the `array_expand` method which is not included in this package)
