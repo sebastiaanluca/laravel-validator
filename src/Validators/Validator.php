@@ -15,14 +15,14 @@ abstract class Validator extends FormRequest
     {
         return true;
     }
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
      * @return array
      */
     abstract public function rules();
-    
+
     /**
      * Get validated user input.
      *
@@ -34,23 +34,35 @@ abstract class Validator extends FormRequest
      */
     public function getValidInput($clean = false)
     {
-        // Make sure any multi-dimensional input array matches our dotted rule keys
-        $input = array_dot($this->input());
-        
+        $input = array_dot($this->all());
+        $rules = array_keys($this->rules());
+
+        $keys = collect($rules)->map(function (string $rule) use ($input) {
+            // Transform each rule to a regex string while supporting
+            // the wildcard (*) character to include sequential arrays too.
+            $regex = '/^' . str_replace(['.', '*'], ['\.', '(.*)'], $rule) . '$/';
+
+            // Match the regex string against our input fields
+            return preg_grep($regex, array_keys($input));
+        });
+
         // Match the input attributes against the existing rules
-        $input = array_only($input, array_keys($this->rules()));
-        
+        $input = array_only($input, $keys->flatten()->toArray());
+
         // Reverse dot flattening to match original input
-        $input = array_expand($input);
-        
-        // Clean empty values
-        if ($clean) {
-            $input = $this->sanitizeInput($input);
+        $expanded = [];
+
+        foreach ($input as $key => $value) {
+            array_set($expanded, $key, $value);
         }
-        
-        return $input;
+
+        if ($clean) {
+            $expanded = $this->sanitizeInput($expanded);
+        }
+
+        return $expanded;
     }
-    
+
     /**
      * Get validated user input.
      *
@@ -64,7 +76,7 @@ abstract class Validator extends FormRequest
     {
         return $this->getValidInput($clean);
     }
-    
+
     /**
      * Remove null and empty values from the input.
      *
@@ -74,7 +86,7 @@ abstract class Validator extends FormRequest
      */
     public function sanitizeInput(array $input)
     {
-        return $input = collect($input)->reject(function($value) {
+        return $input = collect($input)->reject(function ($value) {
             return is_null($value) || empty($value);
         })->toArray();
     }
