@@ -6,7 +6,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
-â¦
+…
 
 ## 0.2.0 (2017-08-02)
 
