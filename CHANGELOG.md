@@ -6,17 +6,19 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
-…
+â¦
 
 ## 0.2.0 (2017-08-02)
 
 ### Added
 
 - Added support for multi-dimensional wildcard (*) array rules
+- Support for Laravel 5.5 and up
 
 ### Removed
 
 - Removed the obsolete service provider
+- Support for Laravel 5.3 and below
 
 ### Fixed
 
